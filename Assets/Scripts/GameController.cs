@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour
     public void RestartLevel()
     {
         string levelName = SceneManager.GetActiveScene().name;
+        levelName = "Level1";
         Debug.Log("ÖØÆô¹Ø¿¨:" + levelName);
         SceneManager.LoadScene(levelName);
     }

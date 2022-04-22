@@ -35,6 +35,7 @@ public class Entrance : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         // 禁用当前摄像机的AudioListener
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = false;
+        GameObject.Find("EventSystem").SetActive(false);
         // 在后台加载新场景
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
         // 直到方法完成前先返回null
