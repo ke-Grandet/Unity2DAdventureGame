@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
 
     public int totalScore = 0;  // 分数
     public Text scoreText;  // 分数界面
+    public TextMeshProUGUI finalScoreText;  // 胜利界面中的分数
 
-    public GameObject gameOverPanel;  // 游戏结束界面
+    public GameObject gameOverPanel;  // 游戏失败界面
+    public GameObject gameVictoryPanel;  // 游戏胜利界面
 
     public static GameController instance;
 
@@ -41,6 +44,15 @@ public class GameController : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
+        }
+    }
+
+    public void ShowGameVictoryPanel()
+    {
+        if (gameVictoryPanel != null)
+        {
+            finalScoreText.text += totalScore;
+            gameVictoryPanel.SetActive(true);
         }
     }
 

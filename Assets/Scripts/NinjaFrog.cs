@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NinjaFrog : MonoBehaviour
 {
-
+    public int score = 1000;
     public float speed = 2f;
     public LayerMask layer;  // 障碍物图层集合
 
@@ -77,8 +77,14 @@ public class NinjaFrog : MonoBehaviour
                 _rigidbody2D.bodyType = RigidbodyType2D.Static;
                 // 销毁自身
                 Destroy(gameObject, 1.33f);
+                GameController.instance.totalScore += score;
+                GameController.instance.UpdateTotalScore();
             }
-
+            else
+            {
+                Destroy(collision.gameObject);
+                GameController.instance.ShowGameOverPanel();
+            }
         }
     }
 

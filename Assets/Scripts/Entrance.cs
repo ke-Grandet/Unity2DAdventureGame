@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Entrance : MonoBehaviour
 {
 
-    public GameObject[] objects;  // 要带到下一关的UI
+    public GameObject[] objects;  // 要带到下一关的UI和游戏控制器
 
     // Start is called before the first frame update
     void Start()

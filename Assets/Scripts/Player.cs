@@ -26,23 +26,33 @@ public class Player : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
         
-        if (x > 0)
+        if (_rigidbody2D.bodyType != RigidbodyType2D.Static)
         {
-            _rigidbody2D.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-            _animator.SetBool("run", true);
-        }
-        if (x < 0)
-        {
-            _rigidbody2D.transform.eulerAngles = new Vector3(0f, 180f, 0f);
-            _animator.SetBool("run", true);
+            if (x > 0)
+            {
+                _rigidbody2D.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                _animator.SetBool("run", true);
+            }
+            if (x < 0)
+            {
+                _rigidbody2D.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+                _animator.SetBool("run", true);
+            }
+
+            if (x < 0.001f && x > -0.001f)
+            {
+                _animator.SetBool("run", false);
+            }
         }
 
-        if (x < 0.001f && x > -0.001f)
-        {
-            _animator.SetBool("run", false);
-        }
+    }
 
-        Run();  // ×óÓÒÒÆ¶¯
+    private void FixedUpdate()
+    {
+        if (_rigidbody2D.bodyType != RigidbodyType2D.Static)
+        {
+            Run();  // ×óÓÒÒÆ¶¯
+        }
     }
 
     // Åö×²ÊÂ¼þ
