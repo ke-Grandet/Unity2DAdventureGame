@@ -41,8 +41,8 @@ public class FruitItem : MonoBehaviour
             }
 
             // 增加分数
-            GameController.instance.totalScore += score;
-            GameController.instance.UpdateTotalScore();
+            GameController.Instance.totalScore += score;
+            GameController.Instance.UpdateTotalScore();
 
             // 延迟0.2秒后销毁自身
             Destroy(gameObject, 0.2f);

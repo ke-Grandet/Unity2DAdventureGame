@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Saw"))
         {
             Destroy(gameObject);
-            GameController.instance.ShowGameOverPanel();
+            GameController.Instance.ShowGameOverPanel();
         }
     }
 

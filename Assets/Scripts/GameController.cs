@@ -15,12 +15,17 @@ public class GameController : MonoBehaviour
     public GameObject gameOverPanel;  // 游戏失败界面
     public GameObject gameVictoryPanel;  // 游戏胜利界面
 
-    public static GameController instance;
+    public static GameController Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        
     }
 
     // Update is called once per frame

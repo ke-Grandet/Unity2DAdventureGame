@@ -101,7 +101,7 @@ public class RockHead : MonoBehaviour
 
     private void ShowGameOverPanel()
     {
-        GameController.instance.ShowGameOverPanel();
+        GameController.Instance.ShowGameOverPanel();
     }
 
 }

@@ -77,13 +77,13 @@ public class NinjaFrog : MonoBehaviour
                 _rigidbody2D.bodyType = RigidbodyType2D.Static;
                 // Ïú»Ù×ÔÉí
                 Destroy(gameObject, 1.33f);
-                GameController.instance.totalScore += score;
-                GameController.instance.UpdateTotalScore();
+                GameController.Instance.totalScore += score;
+                GameController.Instance.UpdateTotalScore();
             }
             else
             {
                 Destroy(collision.gameObject);
-                GameController.instance.ShowGameOverPanel();
+                GameController.Instance.RestartLevel();
             }
         }
     }

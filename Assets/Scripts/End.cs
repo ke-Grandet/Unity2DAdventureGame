@@ -24,7 +24,7 @@ public class End : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // 显示胜利画面
-            GameController.instance.ShowGameVictoryPanel();
+            GameController.Instance.ShowGameVictoryPanel();
             _boxCollider2D.enabled = false;
             // 禁用玩家的刚体
             collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
