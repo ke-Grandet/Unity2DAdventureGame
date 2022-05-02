@@ -1,6 +1,4 @@
-<div style='text-align:center'>
-  <img src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/0.png' />
-</div>
+<img src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/0.png' />
 
 ## 说明
 * 个人自制
