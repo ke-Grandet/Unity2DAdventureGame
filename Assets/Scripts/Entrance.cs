@@ -6,16 +6,10 @@ using UnityEngine.SceneManagement;
 public class Entrance : MonoBehaviour
 {
 
-    public GameObject[] objects;  // 要带到下一关的UI和游戏控制器
+    public string nextLevelName = "Level1";
 
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
     {
 
     }
@@ -24,30 +18,29 @@ public class Entrance : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameController.Instance.StartLevel(nextLevelName);
             // 开启协程
-            StartCoroutine(LoadYourAsyncScene()); 
+            //StartCoroutine(LoadYourAsyncScene()); 
         }
     }
 
     IEnumerator LoadYourAsyncScene()
     {
+        string levelName = "Level2";
         // 获取当前场景，以便之后卸载
         Scene currentScene = SceneManager.GetActiveScene();
         // 禁用当前摄像机的AudioListener
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioListener>().enabled = false;
         GameObject.Find("EventSystem").SetActive(false);
         // 在后台加载新场景
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Level2", LoadSceneMode.Additive);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         // 直到方法完成前先返回null
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
         // 移动物体到新场景
-        foreach (GameObject gameObject in objects)
-        {
-            SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName("Level2"));
-        }
+        SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetSceneByName(levelName));
         // 卸载当前场景
         SceneManager.UnloadSceneAsync(currentScene);
     }

@@ -67,13 +67,10 @@ public class Player : MonoBehaviour
 
     private void Run()
     {
-        // 通过修改刚体速度实现左右移动，注意碰撞箱要使用无摩擦力的材质球
+        // 通过修改刚体速度实现左右移动，注意刚体和碰撞箱要使用无摩擦力的材质球
         Vector2 velocity = _rigidbody2D.velocity;
         velocity.x = x * speed;
         _rigidbody2D.velocity = velocity;
-        // 或者直接修改刚体的位置
-        //Vector2 movement = new Vector2(x, 0);
-        //_rigidbody2D.position += speed * Time.deltaTime * movement;
     }
 
 }
