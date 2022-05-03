@@ -81,7 +81,7 @@ public class JumpBox : MonoBehaviour
         }
 
         Vector2 boxCenter = (Vector2)transform.position + (Vector2.down * playerSize * 0.5f);
-        Gizmos.DrawWireCube(boxCenter, boxSize);
+        //Gizmos.DrawWireCube(boxCenter, boxSize);
     }
 
 }
