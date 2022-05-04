@@ -66,6 +66,14 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(GameController.Instance);
     }
 
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name.Equals("Level3") && Instance.GameScorePanel.activeSelf)
+        {
+            Instance.GameScorePanel.SetActive(false);
+        }
+    }
+
     // 获得分数
     public void GainScore(int value)
     {

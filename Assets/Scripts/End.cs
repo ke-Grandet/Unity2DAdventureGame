@@ -5,32 +5,43 @@ using UnityEngine;
 public class End : MonoBehaviour
 {
 
+    private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    // 显示胜利画面
+        //    GameController.Instance.ShowGameVictoryPanel();
+        //    _boxCollider2D.enabled = false;
+        //    // 禁用玩家的刚体
+        //    collision.GetComponent<Rigidbody2D>().simulated = false;
+        //    collision.GetComponent<Rigidbody2D>().gravityScale = 0;
+        //    // 禁用玩家的动画
+        //    collision.GetComponent<Animator>().enabled = false;
+        //}
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             // 显示胜利画面
             GameController.Instance.ShowGameVictoryPanel();
+            _rigidbody2D.simulated = false;
             _boxCollider2D.enabled = false;
             // 禁用玩家的刚体
-            collision.GetComponent<Rigidbody2D>().simulated = false;
-            collision.GetComponent<Rigidbody2D>().gravityScale = 0;
+            collision.gameObject.GetComponent<Rigidbody2D>().simulated = false;
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             // 禁用玩家的动画
-            collision.GetComponent<Animator>().enabled = false;
+            collision.gameObject.GetComponent<Animator>().enabled = false;
         }
     }
 

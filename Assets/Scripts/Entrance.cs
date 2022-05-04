@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Entrance : MonoBehaviour
 {
 
+    [Header("ÏÂÒ»¹Ø¿¨")]
     public string nextLevelName = "Level1";
 
     // Start is called before the first frame update
