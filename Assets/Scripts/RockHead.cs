@@ -84,18 +84,20 @@ public class RockHead : MonoBehaviour
         // 如果碰到玩家
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 修改玩家图像高度
-            Vector3 newLocalScale = collision.gameObject.transform.localScale;
-            collision.gameObject.transform.localScale = new Vector3(newLocalScale.x, newLocalScale.y * 0.1f);
+            // 调用玩家受击方法
+            collision.gameObject.GetComponent<Player>().Hit();
+            //// 修改玩家图像高度
+            //Vector3 newLocalScale = collision.gameObject.transform.localScale;
+            //collision.gameObject.transform.localScale = new Vector3(newLocalScale.x, newLocalScale.y * 0.1f);
 
-            // 修改玩家碰撞箱高度
-            Vector2 newSize = collision.gameObject.GetComponent<CapsuleCollider2D>().size;
-            collision.gameObject.GetComponent<CapsuleCollider2D>().size = 
-                new Vector2(newSize.x * 0.1f, newSize.y * 0.1f);
+            //// 修改玩家碰撞箱高度
+            //Vector2 newSize = collision.gameObject.GetComponent<CapsuleCollider2D>().size;
+            //collision.gameObject.GetComponent<CapsuleCollider2D>().size = 
+            //    new Vector2(newSize.x * 0.1f, newSize.y * 0.1f);
 
-            // 销毁玩家
-            Destroy(collision.gameObject, 0.5f);
-            Invoke(nameof(ShowGameOverPanel), 0.5f);
+            //// 销毁玩家
+            //Destroy(collision.gameObject, 0.5f);
+            //Invoke(nameof(ShowGameOverPanel), 0.5f);
         }
     }
 
