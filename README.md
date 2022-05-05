@@ -1,4 +1,4 @@
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/0.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/0.png' />
 
 ## 说明
 * 个人自制
@@ -15,12 +15,15 @@
 
 ## 未来更新
 * 加入音效
+* 加入贴墙跳
 * 加入对战模式
 * 丰富奖励物品类型
 * 丰富第二关内容
 * 安卓适配
 
 ## 0.4更新
+### 0.4.1
+* √ 加入BOSS战音乐
 ### 0.4.0
 * √ 加入第三关和BOSS
 
@@ -48,9 +51,9 @@
 * √ 初始版本
 
 ## 截图
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/1.png' />
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/2.png' />
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/3.png' />
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/4.png' />
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/5.png' />
-<img width='431' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/6.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/1.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/2.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/3.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/4.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/5.png' />
+<img width='720' src='https://raw.githubusercontent.com/ke-Grandet/Unity2DAdventureGame/master/images/6.png' />
