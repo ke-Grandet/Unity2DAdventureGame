@@ -81,8 +81,11 @@ public class NinjaFrog : MonoBehaviour
             }
             else
             {
-                Destroy(collision.gameObject);
-                GameController.Instance.RestartLevel();
+                Player player = collision.gameObject.GetComponent<Player>();
+                if (player != null)
+                {
+                    player.Hit();
+                }
             }
         }
     }

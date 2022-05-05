@@ -8,8 +8,6 @@ using TMPro;
 public class GameController : MonoBehaviour
 {
 
-    public TextMeshProUGUI finalScoreText;  // 胜利界面中的分数
-
     [Header("分数界面")]
     public GameObject gameScorePanelPrefab;  // 游戏分数界面的预制件
     [Header("失败界面")]
@@ -66,14 +64,6 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(GameController.Instance);
     }
 
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name.Equals("Level3") && Instance.GameScorePanel.activeSelf)
-        {
-            Instance.GameScorePanel.SetActive(false);
-        }
-    }
-
     // 获得分数
     public void GainScore(int value)
     {
@@ -91,27 +81,47 @@ public class GameController : MonoBehaviour
     public void ShowGameVictoryPanel()
     {
         Instance.GameVictoryPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Score: " + score;
-        //finalScoreText.text += score;
         Instance.GameVictoryPanel.SetActive(true);
     }
 
     // 进入关卡，或回到主界面
     public void StartLevel(string levelName)
     {
+        // 如果是主界面
         if (levelName.Equals("Welcome"))
         {
-            // 如果是主界面，分数清零，隐藏分数界面
+            // 分数清零，隐藏分数界面
             Instance.finalScore = 0;
             Instance.score = 0;
             Instance.GainScore(0);
             Instance.GameScorePanel.SetActive(false);
+            // 切换为默认音乐
+            AudioController.Instance.PlayDefaultMusic();
         }
+        // 如果是关卡
         else
         {
-            // 如果是关卡，分数刷新，显示分数界面
+            // 分数刷新
             Instance.finalScore = Instance.score;
             Instance.GainScore(0);
-            Instance.GameScorePanel.SetActive(true);
+            // 如果是BOSS关
+            if (levelName.Equals("Level3"))
+            {
+                // 隐藏分数界面
+                Instance.GameScorePanel.SetActive(false);
+                // 切换为BOSS音乐
+                AudioController.Instance.PlayBossMusic();
+            }
+            // 如果是其它关卡
+            else
+            {
+                // 显示分数界面
+                Instance.GameScorePanel.SetActive(true);
+                // 播放默认音乐
+                AudioController.Instance.PlayDefaultMusic();
+                // 切换为默认音乐
+                AudioController.Instance.PlayDefaultMusic();
+            }
         }
         // 隐藏胜利界面和失败界面
         Instance.GameOverPanel.SetActive(false);

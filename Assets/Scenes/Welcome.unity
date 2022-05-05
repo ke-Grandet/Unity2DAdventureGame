@@ -559,7 +559,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c31423e94bc870e42bf77a3284b7d817, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d20ffc23729bb164ba57249b88b4fe52, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameControllerPrefab: {fileID: 198725797202895816, guid: e80ef8d0a4fcaf547a371bd5bf84b6bb, type: 3}
+  audioControllerPrefab: {fileID: 6070680992881668387, guid: eb85897d7c4a338448e99e748151bea4, type: 3}
 --- !u!1 &759430155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,7 +1729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.39820835, y: 0.282}
   m_AnchorMax: {x: 0.60400003, y: 0.347}
-  m_AnchoredPosition: {x: -0.5, y: -0.99998474}
+  m_AnchoredPosition: {x: -0.5, y: -0.9999695}
   m_SizeDelta: {x: 3, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526058803
@@ -1941,7 +1942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 055585e6a80565749b0bf3b1576b5b8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e012b7b4642404444be4ddfa9b98cafd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2603,7 +2604,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 055585e6a80565749b0bf3b1576b5b8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a2a743f49d1bbd499ddae32e4033989, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
