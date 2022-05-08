@@ -157,8 +157,15 @@ public class Player : MonoBehaviour
     {
         // 取消刚体的物理模拟
         _rigidbody.simulated = false;
-        // 播放死亡动画
+        // 播放战败动画，动画脚本中调用战败方法
         _animator.SetTrigger("Hit");
+    }
+
+    // 战败
+    public void Defeated()
+    {
+        Destroy(gameObject);
+        GameController.Instance.ShowGameOverPanel();
     }
 
 }

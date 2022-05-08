@@ -7,8 +7,8 @@ public class PlayerHit : StateMachineBehaviour
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Destroy(animator.gameObject);
-        GameController.Instance.ShowGameOverPanel();
+        // 调用玩家战败方法
+        animator.gameObject.GetComponent<Player>().Defeated();
     }
 
 }
