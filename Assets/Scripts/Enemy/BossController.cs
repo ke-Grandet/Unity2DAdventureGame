@@ -15,12 +15,19 @@ public class BossController : MonoBehaviour
     public int maxHealth = 10;
     [Header("战利品")]
     public GameObject booty;
+    [Header("投掷物")]
+    public GameObject missile;
     [Header("最短移动时间")]
     public float minMoveTime = 1f;
     [Header("最长移动时间")]
     public float maxMoveTime = 3f;
+
     [Header("墙壁图层")]
-    public LayerMask boundLayer;
+    [SerializeField]
+    private LayerMask boundLayer;
+    [Header("生命值UI")]
+    [SerializeField]
+    private HealthMask healthMask;
 
     private int direction = -1;  // 移动方向
     private float moveTime = 2f;  // 移动时间
@@ -31,6 +38,7 @@ public class BossController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Animator _animator;
     private BoxCollider2D _boxCollider;
+    private SpriteRenderer _spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +46,7 @@ public class BossController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
     }
 
@@ -64,7 +73,14 @@ public class BossController : MonoBehaviour
             moveTime -= Time.deltaTime;
             if (moveTime <= 0)
             {
-                RandomAct();
+                if (Random.Range(0, 3) < 1)
+                {
+                    Act(0);  // 移动
+                }
+                else
+                {
+                    Act(1);  // 攻击
+                }
             }
         }
 
@@ -92,13 +108,19 @@ public class BossController : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();
         if (player != null)
         {
-            if (collision.GetContact(0).point.y >= _boxCollider.bounds.max.y - 1f)
+            // 如果玩家踩在头顶
+            if (collision.GetContact(0).point.y >= _boxCollider.bounds.max.y - 0.2f)
             {
-                Hit(1);
-                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+                // BOSS受击
+                ChangeHealth(1);
+                // 将玩家向上弹起
+                Rigidbody2D playerBody = player.GetComponent<Rigidbody2D>();
+                playerBody.velocity = new(playerBody.velocity.x, 5f);
             }
+            // 如果没有踩在头顶
             else
             {
+                // 玩家受击
                 player.Hit();
             }
         }
@@ -107,33 +129,45 @@ public class BossController : MonoBehaviour
     // 攻击
     public void Attack()
     {
-        Debug.Log("boss正在对你语言攻击");
-    }
+        GameObject redBomb = Instantiate(
+            missile,
+            new(_rigidbody.position.x + _spriteRenderer.bounds.size.x / 2 * direction,
+                _rigidbody.position.y + _spriteRenderer.bounds.size.y, 0f),
+            Quaternion.identity
+        );
+        redBomb.GetComponent<Rigidbody2D>().velocity = new(Random.Range(3f, 5f) * direction, 5f);
+}
 
-    // 受击
-    public void Hit(int damage)
+    // 改变生命值
+    public void ChangeHealth(int damage)
     {
         health -= damage;
         float healthPercent = Mathf.Clamp01(health / (float)maxHealth);
-        HealthBar.Instance.ChangeValue(healthPercent);
+        healthMask.ChangeValue(healthPercent);
         if (health <= 0)
         {
-            _rigidbody.simulated = false;  // 禁用刚体
-            _animator.SetInteger("Health", health);  // 播放死亡动画
+            _rigidbody.simulated = false;  // 取消刚体的物理模拟
             gameObject.GetComponentInChildren<ParticleSystem>().Play();  // 播放粒子特效
-            GameController.Instance.GainScore(5000);
-            Invoke(nameof(Booty), 2f);
-            Destroy(gameObject, 2f);
+            GameController.Instance.GainScore(5000);  // 玩家获得分数
+            _animator.SetInteger("Health", health);  // 播放战败动画，动画脚本中调用战败方法
         }
     }
 
-    // 随机选择一个动作
-    public void RandomAct()
+    // 攻击之后的动作
+    public void AfterAttack()
     {
-        RandomAct(Random.Range(0, 2));
+        if (Random.Range(0, 3) < 1)
+        {
+            Act(0);  // 移动
+        }
+        else
+        {
+            Act(2);  // 继续攻击
+        }
     }
 
-    public void RandomAct(int act)
+    // 指定一个动作
+    public void Act(int act)
     {
         switch (act)
         {
@@ -144,23 +178,36 @@ public class BossController : MonoBehaviour
                 moveTime = Random.Range(minMoveTime, maxMoveTime);  // 刷新移动时间
                 _animator.SetFloat("Direction", direction);  // 播放移动动画
                 break;
-            // 攻击
+            // 发动攻击
             case 1:
                 isMoving = false;
+                //direction = -direction;  // 调转移动方向
                 _animator.SetTrigger("Attack");  // 播放攻击动画
+                break;
+            // 继续攻击
+            case 2:
+                direction = -direction;  // 调转移动方向
+                _animator.SetTrigger("Keep Attack");  // 播放另一个攻击动画
                 break;
             // 其它
             default:
-                Debug.Log("出现意外数值");
+                Debug.Log("BOSS动作出现意外数值");
                 break;
         }
+    }
+
+    // 战败
+    public void Defeated()
+    {
+        Booty();  // 掉落战利品
+        Destroy(gameObject);  // 销毁自身
     }
 
     // 产生战利品
     public void Booty()
     {
         GameObject gameObject = Instantiate(booty, _rigidbody.position, Quaternion.identity);
-        gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f, ForceMode2D.Impulse);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new(0f, 5f);
     }
 
 }
